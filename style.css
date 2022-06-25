@@ -1,0 +1,44 @@
+body {
+    background-color: skyblue;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+#main-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#grid {
+    height: 600px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 15px solid red;
+    border-radius: 15px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.square {
+    background-color: lightgray;
+    border: 1px solid white;
+    display: flex;
+    flex: 1;
+}
+
+
+
