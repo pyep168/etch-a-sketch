@@ -1,3 +1,8 @@
+h1 {
+    font-family: cursive;
+    color: gold;
+}
+
 body {
     background-color: skyblue;
 }
@@ -16,7 +21,17 @@ header {
 #options {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+.colorBtns {
+    display: flex;
+    gap: 10px;
+}
+
+.black {
+    display: flex;
 }
 
 #grid {
@@ -24,7 +39,7 @@ header {
     width: 600px;
     display: flex;
     flex-direction: column;
-    border: 15px solid red;
+    border: 23px solid red;
     border-radius: 15px;
 }
 

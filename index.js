@@ -1,6 +1,7 @@
 const options = document.querySelector('#options');
 const grid = document.querySelector('#grid');
 
+
 function makeGrid(size) {
 
     //  Iterate through a column
@@ -19,46 +20,98 @@ function makeGrid(size) {
         }
     }
 
-    //  Change color when hover over 
-    //  Reverts back when hover away
     let squares = document.querySelectorAll('.square');
+    let setBlack = document.querySelector('#blackBtn')
 
-    squares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
-            console.log('square changed color');
-            square.style.backgroundColor = "black";
-        })
-        
-        // square.addEventListener("mouseout", () => {
-        //     console.log('square reverted back color');
-        //     square.style.backgroundColor = "lightgrey";
-        // });
+    setBlack.checked = true;
 
-        //  Change color permantly after clicking square
-        // square.addEventListener("mousedown", () => {
-        //     square.style.backgroundColor = "black";
-        // });
-    });
+    if ((setBlack).checked) {
+        squares.forEach((square) => {
+            square.addEventListener('mouseover', () => {
+                // console.log('turn black');
+                square.style.backgroundColor = "black";
+            });
+        });
+    }
 }
 
 makeGrid(16);
+
+// Change color
+let squares = document.querySelectorAll('.square');
+let colorBtns = document.querySelector('.colorBtns');
+let setBlack = document.querySelector('#blackBtn');
+let setRainbow = document.querySelector('#rainbowBtn');
+let setEraser = document.querySelector('#eraserBtn');
 
 //  Reset Grid
 let resetGridBtn = document.createElement('button')
 resetGridBtn.setAttribute('id', 'resetGridBtn');
 resetGridBtn.textContent = 'New Grid';
-options.appendChild(resetGridBtn);
+options.insertBefore(resetGridBtn, colorBtns);
 
 let resetGrid = document.querySelector('#resetGridBtn');
 resetGrid.addEventListener('click', () => {
     removeSquares();
     askNewGrid();
-})
+});
+
+draw();
+
+function draw() {
+    setBlack.addEventListener('click', () => {
+
+        if ((setBlack).checked) {
+            squares.forEach((square) => {
+                square.addEventListener('mouseover', () => {
+                    // console.log('turn black');
+                    square.style.backgroundColor = "black";
+                });
+            });
+        }
+
+    });
+
+    setRainbow.addEventListener('click', () => {
+
+        if ((setRainbow).checked) {
+            squares.forEach((square) => {
+                square.addEventListener('mouseover', () => {
+                    // console.log('turn rainbow');
+                    square.style.backgroundColor = generateRandomColor();
+                });
+            });
+        }
+
+    });
+
+    setEraser.addEventListener('click', () => {
+
+        if ((setEraser).checked) {
+            squares.forEach((square) => {
+                square.addEventListener('mouseover', () => {
+                    // console.log('turn erasor');
+                    square.style.backgroundColor = 'lightgray';
+                });
+            });
+        }
+
+    });
+}
+
+function generateRandomColor() {
+    let rColor = Math.floor(Math.random() * 256);
+    let gColor = Math.floor(Math.random() * 256);
+    let bColor = Math.floor(Math.random() * 256);
+    let rainbowColor = `rgb(${rColor}, ${gColor}, ${bColor})`;
+    return rainbowColor;
+}
 
 function askNewGrid() {
     let newGridNum = prompt("How many squares per side for the new grid?")
     if (newGridNum < 101) {
         makeGrid(newGridNum);
+        draw();
     } else {
         alert('Please input a maximum of 100.');
         askNewGrid();
