@@ -25,13 +25,10 @@ header {
     margin-bottom: 20px;
 }
 
+
 .colorBtns {
     display: flex;
     gap: 10px;
-}
-
-.black {
-    display: flex;
 }
 
 #grid {

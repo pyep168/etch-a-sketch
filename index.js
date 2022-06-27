@@ -25,18 +25,16 @@ function makeGrid(size) {
 }
 
 // Change color
-let squares = document.querySelectorAll('.square');
-let colorBtns = document.querySelector('.colorBtns');
-let setBlack = document.querySelector('#blackBtn');
-let setRainbow = document.querySelector('#rainbowBtn');
-let setEraser = document.querySelector('#eraserBtn');
-
 function draw() {
     let squares = document.querySelectorAll('.square');
-    let setBlack = document.querySelector('#blackBtn')
+    let setBlack = document.querySelector('#blackBtn');
+    let setRainbow = document.querySelector('#rainbowBtn');
+    let setEraser = document.querySelector('#eraserBtn');
+
+    // Default set to black
     setBlack.checked = true;
 
-
+    // Check if the radio button is selected
     if ((setBlack).checked) {
         squares.forEach((square) => {
             square.addEventListener('mouseover', () => {
@@ -55,6 +53,7 @@ function draw() {
         });
     }
 
+    // Change color according to color picked
     if ((setEraser).checked) {
         squares.forEach((square) => {
             square.addEventListener('mouseover', () => {
@@ -115,17 +114,19 @@ function generateRandomColor() {
 //  Reset Grid
 let resetGrid = document.querySelector('#resetGridBtn');
 resetGrid.addEventListener('click', () => {
-    removeSquares();
     askNewGrid();
 });
 
 function askNewGrid() {
     let newGridNum = prompt("How many squares per side for the new grid?")
-    if (newGridNum < 101) {
+    if (newGridNum === null) {
+        return;
+    } else if (newGridNum < 101 && newGridNum > 0) {
+        removeSquares();
         makeGrid(newGridNum);
         draw();
     } else {
-        alert('Please input a maximum of 100.');
+        alert('Please input a number from 1-100.');
         askNewGrid();
     }
 }
